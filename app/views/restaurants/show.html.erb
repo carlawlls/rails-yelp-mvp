@@ -1,0 +1,20 @@
+<h1><%= @restaurant.name %></h1>
+
+<ul>
+<li><%= @restaurant.address %></li>
+<li><%= @restaurant.phone_number %></li>
+<li><%= @restaurant.category %></li>
+</ul>
+
+<h2>Reviews</h2>
+<ul>
+<% if @restaurant.reviews.any? %>
+  <% @restaurant.reviews.each do |review| %>
+    <li><%= review.content %></li>
+  <% end %>
+ <% else %>
+  <li><%= link_to 'Be the first to review', new_restaurant_review_path(@restaurant) %></li>
+<% end %>
+</ul>
+<p><%= link_to 'Add new review', new_restaurant_review_path(params[:id]) %></p>
+<p><%= link_to 'Home', restaurants_path %></p>
